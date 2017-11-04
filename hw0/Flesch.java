@@ -89,7 +89,14 @@ public class Flesch
      */
     private static double getReadingEaseGrade(int sentenceCount, int wordCount, int syllableCount)
     {
-        return 206.835 - 84.6 * (syllableCount / wordCount) - 1.015 * (wordCount / sentenceCount);
+        if (sentenceCount == 0 || wordCount == 0)
+        {
+            return 100;
+        }
+        final double syllables = (double) syllableCount;
+        final double words = (double) wordCount;
+        final double sentences = (double) sentenceCount;
+        return 206.835 - 84.6 * (syllables / words) - 1.015 * (words / sentences);
     }
 
     /**
